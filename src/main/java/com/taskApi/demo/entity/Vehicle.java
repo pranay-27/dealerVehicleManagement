@@ -1,5 +1,6 @@
 package com.taskApi.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.taskApi.demo.enums.VehicleStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,8 @@ public class Vehicle {
     @Enumerated(EnumType.STRING)
     private VehicleStatus status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dealer_id", nullable = false)
+    @JsonIgnoreProperties("dealer")
     private Dealer dealer;
 }
